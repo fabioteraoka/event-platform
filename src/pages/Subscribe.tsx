@@ -15,16 +15,17 @@ export function Subscribe() {
 
   const {data} = useGetSubscribersQuery();
   
-  async function handleSubscribe(event: FormEvent) {
+function handleSubscribe(event: FormEvent) {
     event.preventDefault();
 
     
-  //   await createSubscriber({ 
-  //     variables: { 
-  //       name, 
-  //       email 
-  //     } });
+    createSubscriber({ 
+      variables: { 
+        name, 
+        email 
+      } });
       navigate("/event");
+
   }
 
   return (
