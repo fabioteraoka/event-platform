@@ -1,10 +1,11 @@
 import {useNavigate} from "react-router-dom";
 import { useState, FormEvent } from "react";
 import { Logo } from "../components/Logo";
-import { useCreateSubscriberMutation } from "../generated";
+import { useCreateSubscriberMutation, useGetLessonsQuery, useGetSubscribersQuery } from "../generated";
 import mockup from "/src/assets/code-mockup.png"
 
 export function Subscribe() {
+
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -12,18 +13,22 @@ export function Subscribe() {
 
   const [createSubscriber, {loading}] = useCreateSubscriberMutation();
 
+  const {data} = useGetSubscribersQuery();
+  
   async function handleSubscribe(event: FormEvent) {
     event.preventDefault();
 
-    await createSubscriber({ 
-      variables: { 
-        name, 
-        email 
-      } });
+    
+  //   await createSubscriber({ 
+  //     variables: { 
+  //       name, 
+  //       email 
+  //     } });
       navigate("/event");
   }
 
   return (
+    
     <div className="flex flex-col min-h-screen bg-no-repeat bg-cover bg-blur item-center">
       <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto">
         <div className="max-w-[640px]">
@@ -75,4 +80,5 @@ export function Subscribe() {
     </div>
   );
 }
+
 
